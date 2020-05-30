@@ -2,9 +2,11 @@ from flask import Flask,render_template,session,request,redirect,url_for,flash
 import mysql.connector,hashlib
 import matplotlib.pyplot as plt
 import numpy as np
+import os
 
 mydb = mysql.connector.connect(
   host='localhost',
+  port='3308',
   user='root',
   password='78679',
   database = 'otms'
@@ -13,6 +15,9 @@ mydb = mysql.connector.connect(
 mycursor = mydb.cursor(buffered=True)
 
 app = Flask(__name__)
+
+#set secret key for session
+app.config.update(SECRET_KEY=os.urandom(24))
 
 @app.route("/",methods = ['POST', 'GET'])
 @app.route("/home",methods = ['POST','GET'])
