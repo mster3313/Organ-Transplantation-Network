@@ -1,0 +1,59 @@
+{
+    "sqltools.connections": [
+        {
+            "askForPassword": false,
+            "connectionTimeout": 60,
+            "database": "company",
+            "dialect": "MySQL",
+            "name": "lab",
+            "port": 3308,
+            "server": "localhost",
+            "username": "root",
+            "driver": "MySQL"
+        },
+        {
+            "askForPassword": false,
+            "database": "company",
+            "dialect": "MySQL",
+            "name": "lab",
+            "port": 3308,
+            "server": "localhost",
+            "username": "root",
+            "driver": "MySQL"
+        },
+        {
+            "askForPassword": false,
+            "database": "company",
+            "dialect": "MySQL",
+            "name": "lab",
+            "port": 3308,
+            "server": "localhost",
+            "username": "root",
+            "driver": "MySQL"
+        },
+        {
+            "askForPassword": false,
+            "connectionTimeout": 30000,
+            "database": "company",
+            "dialect": "MySQL",
+            "name": "Lab3",
+            "port": 3308,
+            "server": "localhost",
+            "username": "root",
+            "driver": "MySQL"
+        },
+        {
+            "askForPassword": true,
+            "database": "otms",
+            "driver": "MySQL",
+            "mysqlOptions": {
+                "authProtocol": "default"
+            },
+            "name": "dbproject",
+            "port": 3308,
+            "previewLimit": 50,
+            "server": "localhost",
+            "username": "root"
+        }
+    ]
+}

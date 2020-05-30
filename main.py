@@ -6,9 +6,10 @@ import numpy as np
 mydb = mysql.connector.connect(
   host='localhost',
   user='root',
-  password='your_password',
-  database = 'DBMS_PROJECT'
+  password='78679',
+  database = 'otms'
 )
+
 mycursor = mydb.cursor(buffered=True)
 
 app = Flask(__name__)

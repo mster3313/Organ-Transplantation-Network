@@ -1,5 +1,5 @@
-CREATE DATABASE DBMS_PROJECT;
-USE DBMS_PROJECT;
+CREATE DATABASE OTMS;
+USE OTMS;
 
 CREATE TABLE login(
     username VARCHAR(20) NOT NULL,
@@ -8,7 +8,6 @@ CREATE TABLE login(
 
 INSERT INTO login VALUES ('admin','admin');
 
-#table 1
 CREATE TABLE User(
     User_ID int NOT NULL,
     Name varchar(20) NOT NULL,
@@ -21,14 +20,14 @@ CREATE TABLE User(
     PRIMARY KEY(User_ID)
 );
 
-#table 2
+
 CREATE TABLE User_phone_no(
     User_ID int NOT NULL,
     phone_no varchar(15),
     FOREIGN KEY(User_ID) REFERENCES User(User_ID) ON DELETE CASCADE
 );
 
-#table 3
+
 CREATE TABLE Organization(
   Organization_ID int NOT NULL,
   Organization_name varchar(20) NOT NULL,
@@ -37,7 +36,7 @@ CREATE TABLE Organization(
   PRIMARY KEY(Organization_ID)
 );
 
-#table 4
+
 CREATE TABLE Doctor(
   Doctor_ID int NOT NULL,
   Doctor_Name varchar(20) NOT NULL,
@@ -47,7 +46,7 @@ CREATE TABLE Doctor(
   PRIMARY KEY(Doctor_ID)
 );
 
-#table 5
+
 CREATE TABLE Patient(
     Patient_ID int NOT NULL,
     organ_req varchar(20) NOT NULL,
@@ -59,7 +58,7 @@ CREATE TABLE Patient(
     PRIMARY KEY(Patient_Id, organ_req)
 );
 
-#table 6
+
 CREATE TABLE Donor(
   Donor_ID int NOT NULL,
   organ_donated varchar(20) NOT NULL,
@@ -71,7 +70,7 @@ CREATE TABLE Donor(
   PRIMARY KEY(Donor_ID, organ_donated)
 );
 
-#table 7
+
 CREATE TABLE Organ_available(
   Organ_ID int NOT NULL AUTO_INCREMENT,
   Organ_name varchar(20) NOT NULL,
@@ -80,7 +79,7 @@ CREATE TABLE Organ_available(
   PRIMARY KEY(Organ_ID)
 );
 
-#table 8
+
 CREATE TABLE Transaction(
   Patient_ID int NOT NULL,
   Organ_ID int NOT NULL,
@@ -92,21 +91,21 @@ CREATE TABLE Transaction(
   PRIMARY KEY(Patient_ID,Organ_ID)
 );
 
-#table 9
+
 CREATE TABLE Organization_phone_no(
   Organization_ID int NOT NULL,
   Phone_no varchar(15),
   FOREIGN KEY(Organization_ID) REFERENCES Organization(Organization_ID) ON DELETE CASCADE
 );
 
-#table 10
+
 CREATE TABLE Doctor_phone_no(
   Doctor_ID int NOT NULL,
   Phone_no varchar(15),
   FOREIGN KEY(Doctor_ID) REFERENCES Doctor(Doctor_ID) ON DELETE CASCADE
 );
 
-#table 11
+
 CREATE TABLE Organization_head(
   Organization_ID int NOT NULL,
   Employee_ID int NOT NULL,

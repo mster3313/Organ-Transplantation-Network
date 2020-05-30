@@ -1,5 +1,5 @@
 insert into Doctor values
--- (1,'Doctor-1','Department-1',78),
+(1,'Doctor-1','Department-1',78),
 (2,'Doctor-2','Department-2',10),
 (3,'Doctor-3','Department-3',61),
 (4,'Doctor-4','Department-4',26),
