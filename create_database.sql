@@ -16,7 +16,6 @@ CREATE TABLE User(
     Medical_history varchar(20),
     Street varchar(20),
     City varchar(20),
-    State varchar(20),
     PRIMARY KEY(User_ID)
 );
 
@@ -210,3 +209,5 @@ end //
 
 -- INSERT INTO User VALUES(10,'Random1','2000-01-01',1,NULL,'Street 1','City 1','State 1');
 -- INSERT INTO User VALUES(20,'Random2','2000-01-02',1,NULL,'Street 2','City 2','State 2');
+
+
