@@ -4,17 +4,19 @@ import matplotlib.pyplot as plt
 import numpy as np
 import os
 
+app = Flask(__name__)
+
+app.config.from_object("config.OTMSConfig")
+
 mydb = mysql.connector.connect(
-  host='localhost',
-  port='3308',
-  user='root',
-  password='78679',
-  database = 'otms'
+  host = app.config['MYSQL_DATABASE_HOST'],
+  port = app.config['MYSQL_DATABASE_PORT'],
+  user = app.config['MYSQL_DATABASE_USER'],
+  password = app.config['MYSQL_DATABASE_PASSWORD'],
+  database = app.config['MYSQL_DATABASE_DB']
 )
 
 mycursor = mydb.cursor(buffered=True)
-
-app = Flask(__name__)
 
 #set secret key for session
 app.config.update(SECRET_KEY=os.urandom(24))
