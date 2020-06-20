@@ -146,7 +146,7 @@ def add_User():
             temp = 'NULL'
         val = val + (temp,)
 
-    qry = "INSERT INTO User Values (%s,%s,%s,%s,%s,%s,%s,%s)"%val
+    qry = "INSERT INTO User Values (%s,%s,%s,%s,%s,%s,%s)"%val
     print(qry)
     success = True
     error = False
