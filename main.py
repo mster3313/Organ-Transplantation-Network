@@ -1076,7 +1076,7 @@ def stats():
         A.append(Patient[0])
         B.append(Patient[1])
     plt.pie(B, labels = A)
-    plt.savefig('./static/Patient_stat.jpeg')
+    plt.savefig('./static/Patient_stat.png')
     # plt.show()
     plt.close()
     qry = "select distinct Organ_donated from Transaction inner join Donor on Transaction.Donor_ID = Donor.Donor_ID"
@@ -1114,7 +1114,7 @@ def stats():
     plt.title('SUCCESS V/S FAILURE IN ORGAN TRANSPLANTATION')
     plt.xticks(ind + width / 2, organ_list)
     plt.legend(loc='best')
-    plt.savefig('./static/success.jpeg')
+    plt.savefig('./static/success.png')
     return render_template('statistics.html')
 
 if __name__ == "__main__":
