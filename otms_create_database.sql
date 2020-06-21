@@ -116,6 +116,19 @@ CREATE TABLE Organization_head(
   FOREIGN KEY(Organization_ID) REFERENCES Organization(Organization_ID) ON DELETE CASCADE,
   PRIMARY KEY(Organization_ID,Employee_ID)
 );
+
+
+-- Create INDEXES
+CREATE INDEX user_id_index ON User (User_ID);
+CREATE INDEX patient_id_organ_req_index ON Patient (Patient_ID, organ_req);
+CREATE INDEX donor_id_organ_donated_index ON Donor (Donor_ID, organ_donated);
+CREATE INDEX organization_head_index ON Organization_head(Organization_ID, Employee_ID);
+CREATE INDEX transaction_index ON Transaction(Donor_ID, Status);
+CREATE INDEX patient_id_user_id_idx ON Patient(User_ID, Patient_ID);
+CREATE INDEX donor_id_user_id_idx ON Donor(User_Id,Donor_ID);
+
+
+
 --
 -- delimiter //
 -- create trigger ADD_DONOR

@@ -1082,7 +1082,7 @@ def stats():
     plt.savefig('./static/Patient_stat.png')
     # plt.show()
     plt.close()
-    qry = "select distinct Organ_donated from Transaction inner join Donor on Transaction.Donor_ID = Donor.Donor_ID"
+    qry = "select distinct Donor.organ_donated from Transaction inner join Donor on Transaction.Donor_ID = Donor.Donor_ID"
     mycursor.execute(qry)
     list = mycursor.fetchall()
     organ_list = []
@@ -1093,12 +1093,12 @@ def stats():
     A.clear()
     B.clear()
     for organ in organ_list:
-        qry = "select count(*) from Transaction inner join Donor on Donor.Donor_ID = Transaction.Donor_ID where Organ_donated = '%s' and Status = 1" %organ
+        qry = "select count(*) from Transaction inner join Donor on Donor.Donor_ID = Transaction.Donor_ID where Donor.organ_donated = '%s' and Transaction.Status = 1" %organ
         print(qry)
         mycursor.execute(qry)
         a = mycursor.fetchone()
         A.append(a[0])
-        qry = "select count(*) from Transaction inner join Donor on Donor.Donor_ID = Transaction.Donor_ID where Organ_donated = '%s' and Status = 0" %organ
+        qry = "select count(*) from Transaction inner join Donor on Donor.Donor_ID = Transaction.Donor_ID where Donor.organ_donated = '%s' and Transaction.Status = 0" %organ
         print(qry)
         mycursor.execute(qry)
         b = mycursor.fetchone()
