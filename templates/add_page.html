@@ -41,7 +41,7 @@
                     {% if fields[i] == 'Date_of_Birth' %}
                     <input class="form-control" type="date" name="{{fields[i]}}" required>
                     {% elif fields[i] == 'User_ID' or fields[i] == 'Patient_ID' or fields[i] == 'Doctor_ID' or
-                    fields[i] == 'Organ_ID' %}
+                    fields[i] == 'Organ_ID' or fields[i] == 'Donor_ID' or fields[i] == 'Organization_ID' %}
                     <input class="form-control" type="number" min="1" name="{{fields[i]}}" required>
                     {% else %}
                     <input class="form-control" name="{{fields[i]}}" required>

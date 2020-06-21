@@ -28,9 +28,11 @@ def home():
         return render_template('login.html'),401
     else:
         if session.get('isAdmin') :
-            return render_template('home.html',username=session.get('username'))
+            return render_template('home.html',username=session.get('username'),role='admin')
+        if session.get('isManager') :
+            return render_template('home.html',username=session.get('username'),role='manager')
         else :
-            return home_student()
+            return render_template('login.html')
 
 @app.route("/login",methods = ['GET','POST'])
 def login():
@@ -47,6 +49,7 @@ def login():
             session['username'] = request.form['username']
             session['password'] = request.form['password']
             session['isAdmin'] = (request.form['username']=='admin')
+            session['isManager'] = (request.form['username']=='manager')
             return home()
     return render_template('login.html')
 

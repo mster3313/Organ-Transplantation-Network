@@ -18,7 +18,7 @@
 			<button style="border: 0px solid transparent;" class="btn btn-outline-primary">HOME</button>
 		</form>
 		<form class="form-inline" action="/logout">
-			<label style="color:white; padding-right: 10px">Hi {{session.get('username')}}!</label>
+			<label style="color:white; padding-right: 10px">Hi {{username}}!</label>
 			<button class="btn btn-outline-success my-2 my-sm-0" type="submit">Logout</button>
 		</form>
 	</nav>
@@ -42,9 +42,15 @@
 				<div class="card-body">
 					<center>
 						<div>
-							<form action="/search_detail" method="POST">
-								<button class="btn btn-primary" style="width: 25%;" type="submit">View/Update/Delete
-									User Details</button>
+							<form action="/show_update_detail" method="POST" class="container">
+								<div class="form-group">
+									<input placeholder="User ID" type="number" name="User_ID" class="form-control" required>
+								</div>
+								<button class="btn btn-primary" type="submit" style="width:24%;" name="show">See User Details</button>
+								<button class="btn btn-primary" type="submit" style="width:24%;" name="update">Update User Details</button>
+								{% if role == 'admin' %}
+								<button class="btn btn-primary" type="submit" style="width:24%;" name="delete">Delete User</button>
+								{% endif %}
 							</form>
 						</div>
 					</center>
@@ -303,6 +309,8 @@
 				</div>
 			</div>
 		</div>
+
+		{% if role == 'admin' %}
 		<div class="card">
 			<div class="card-header" id="headingFive" data-toggle="collapse" data-target="#collapseFive">
 				<h5 class="mb-0">
@@ -368,6 +376,8 @@
 				</div>
 			</div>
 		</div>
+		{% endif %}
+
 		<div class="card">
 			<div class="card-header" id="headingSix" data-toggle="collapse" data-target="#collapseSix">
 				<h5 class="mb-0">

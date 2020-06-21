@@ -7,7 +7,8 @@ CREATE TABLE login(
     password VARCHAR(20) NOT NULL
 );
 
-INSERT INTO login VALUES ('admin','admin');
+INSERT INTO login VALUES ('admin','admin'); -- admins are allowed to do all operations
+INSERT INTO login VALUES ('manager','manager'); -- managers have no access to delete records
 
 CREATE TABLE User(
     User_ID int NOT NULL,
