@@ -8,15 +8,36 @@ app = Flask(__name__)
 
 app.config.from_object("config.OTMSConfig")
 
-mydb = mysql.connector.connect(
-  host = app.config['MYSQL_DATABASE_HOST'],
-  port = app.config['MYSQL_DATABASE_PORT'],
-  user = app.config['MYSQL_DATABASE_USER'],
-  password = app.config['MYSQL_DATABASE_PASSWORD'],
-  database = app.config['MYSQL_DATABASE_DB']
+mydb_admin = mysql.connector.connect(
+    host = app.config['MYSQL_DATABASE_HOST'],
+    port = app.config['MYSQL_DATABASE_PORT'],
+    user = app.config['MYSQL_DATABASE_USER'],
+    password = app.config['MYSQL_DATABASE_PASSWORD'],
+    database = app.config['MYSQL_DATABASE_DB']
 )
+mycursor_admin = mydb_admin.cursor(buffered=True)
 
-mycursor = mydb.cursor(buffered=True)
+# for security reasons establish another connection for managers
+# with only select, update, insert privileges
+query = "CREATE USER IF NOT EXISTS 'manager'@'localhost' IDENTIFIED BY 'manager@123'"
+mycursor_admin.execute(query)
+
+# set the privileges for manager access database user 
+# doesn't allow to delete any record 
+query = "GRANT INSERT, SELECT, UPDATE ON *.* TO 'manager'@'localhost'"
+mycursor_admin.execute(query)
+
+mydb_manager = mysql.connector.connect(
+    host = app.config['MYSQL_DATABASE_HOST'],
+    port = app.config['MYSQL_DATABASE_PORT'],
+    user = "manager",
+    password = "manager@123",
+    database = app.config['MYSQL_DATABASE_DB']
+)
+mycursor_manager = mydb_manager.cursor(buffered=True)
+
+mydb = mydb_admin
+mycursor = mycursor_admin
 
 #set secret key for session
 app.config.update(SECRET_KEY=os.urandom(24))
@@ -25,11 +46,21 @@ app.config.update(SECRET_KEY=os.urandom(24))
 @app.route("/home",methods = ['POST','GET'])
 def home():
     if not session.get('login'):
+        if session.get('isAdmin') :
+            mydb = mydb_admin
+            mycursor = mycursor_admin
+        if session.get('isManager') :
+            mydb = mydb_manager
+            mycursor = mycursor_manager
         return render_template('login.html'),401
     else:
         if session.get('isAdmin') :
+            mydb = mydb_admin
+            mycursor = mycursor_admin
             return render_template('home.html',username=session.get('username'),role='admin')
         if session.get('isManager') :
+            mydb = mydb_manager
+            mycursor = mycursor_manager
             return render_template('home.html',username=session.get('username'),role='manager')
         else :
             return render_template('login.html')
